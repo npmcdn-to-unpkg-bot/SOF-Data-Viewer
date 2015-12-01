@@ -1,1 +1,77 @@
-All Photos Partial
+<div class="container-fluid">
+  <div class="row">
+    <div ng-show="error" class="col-md-12">
+      <div>Sorry, there was a problem.  Error: </div>
+      <div>{{error}}</div>
+      <br/
+      <div>If this problem persists, and you think we can help, please email us at <a href='mailto:thirdlab@cs.vt.edu?subject=I was at this page: {{path}} , and I received this error: "{{error}}" .'>thirdlab@cs.vt.edu</a> .</div>
+    </div>    
+<!--     <div class="col-md-3">
+      <input type="text" ng-model="day" class="search ng-pristine ng-valid" placeholder="1 || 2 || 3 || ...">
+      <button ng-click="XFilterPhotos.filterBy('day', day)">filter by day</button>
+      <input type="text" ng-model="activityName" class="search ng-pristine ng-valid" placeholder="What Size!?">
+      <button ng-click="XFilterPhotos.filterBy('activityName', activityName)">filter by activity Name</button>
+    </div>
+ -->
+    <div ng-show="!error">
+      <div class="col-md-1">
+        <h3>Groups</h3>
+        <div ng-repeat="groupObject in XFilterGroups.collection()">
+          <button ng-click="toggleGroup(groupObject)" ng-class="groupObject.ticked ? 'selected' : 'unselected' ">{{groupObject.groupStudyName}}</button> {{groupObject.ticked}}
+        </div>
+      </div>
+      <div class="col-md-1">
+        <h3>Days</h3>
+        <div ng-repeat="dayObject in days">
+          <button ng-click="toggleDay(dayObject)" ng-class="dayObject.ticked ? 'selected' : 'unselected' ">{{dayObject.day}}</button> {{dayObject.ticked}}
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h3>Activities</h3>
+        <div class="row">
+          <div ng-repeat="activityObject in XFilterActivities.collection()" class="col-md-2">
+            <button ng-click="toggleActivityNumber(activityObject)" ng-class="activityObject.ticked ? 'selected' : 'unselected' ">{{activityObject.activityDay}} - {{activityObject.activityNumberThatDay}}</button> {{activityObject.ticked}} {{activityObject.uniqueActivityNumber}}
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h3>Students</h3>
+        <div ng-repeat="studentObject in XFilterStudents.collection()">
+          <button ng-click="toggleStudent(studentObject)" ng-class="studentObject.ticked ? 'selected' : 'unselected' ">{{studentObject.studentStudyName}}</button> {{studentObject.ticked}} - {{studentObject.studentStudyID}}
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h3>Labels</h3>
+        <div ng-repeat="labelObject in XFilterLabels.collection()">
+          <button ng-click="toggleLabel(labelObject)" ng-class="labelObject.ticked ? 'selected' : 'unselected' ">{{labelObject.labelName}}</button>
+        </div>
+      </div>
+  <!--     <div class="col-md-3">
+        <button ng-click="XFilterPhotos.sortBy('date')">Sort by date</button>
+        <button ng-click="XFilterPhotos.sortBy('name')">Sort by Name</button>
+        <button ng-click="XFilterPhotos.unsortAll()">unSort All</button>
+        <button ng-click="XFilterPhotos.filterBy('name', 'DJ')">Filter by name 'DJ'</button>
+        <button ng-click="XFilterPhotos.filterBy('name', 'Stars')">Filter by name 'Stars'</button>
+        <button ng-click="XFilterPhotos.unfilterAll()">unFilter All</button>
+      </div>
+   -->
+    </div>
+  </div>
+</div>
+<!-- The photos -->
+<div class="container-fluid">
+  <div class="row">
+    <div ng-repeat="photo in XFilterPhotos.collection()" class="photo col-md-2">
+      <div>Photo Name : {{photo.name}}</div>
+      <div>Photo Activity Name : {{photo.activity.get('activityName')}}</div>
+      <div>Photo Day - Activity : {{photo.activityDay}} - {{photo.activityNumberThatDay}}</div>
+      <div>Photo Activity Day : {{photo.activityDay}}</div>
+      <div>Photo Activity Number That Day - {{photo.activityNumberThatDay}}</div>
+      <div>Photo Group : {{photo.groupStudyName}}</div>
+      <div>Photo Student : {{photo.studentStudyName}} - {{photo.studentStudyID}}</div>
+      <a ng-click="openLightboxModal(photo.imageIndex)">
+        <img class="photo-image" ng-src="{{photo.get('file')._url}}">        
+      </a>
+    </div>
+  </div>
+</div>

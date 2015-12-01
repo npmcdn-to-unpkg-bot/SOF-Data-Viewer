@@ -9,10 +9,14 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.css" />
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css.map" />
     <!-- endbuild -->
   </head>
   <body>
@@ -20,48 +24,65 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
+    <div id="main-container">
+      <!-- Add your site or application content here -->
+      <div class="header">
+        <div class="navbar navbar-default" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
 
-            <a class="navbar-brand" ui-sref="home">SOF Data Viewer</a>
-          </div>
+              <a class="navbar-brand" ui-sref="home">SOF Data Viewer</a>
+            </div>
 
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+            <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
-            <ul class="nav navbar-nav">
-              <li class="active"><a ui-sref="data-table">Data Table</a></li>
-              <li><a ui-sref="curriculum">Curriculum</a></li>
-              <li><a ui-sref="lesson-plans">Daily Lesson Plans</a></li>
-              <li><a ui-sref="photos">All Photos</a></li>
-            </ul>
+              <ul class="nav navbar-nav">
+                <!-- <li class="active"><a ui-sref="data-table.info">Data Table</a></li> -->
+                <li ui-sref-active="active"><a ui-sref="curriculum">Curriculum</a></li>
+                <li ui-sref-active="active"><a ui-sref="lesson-plans">Daily Lesson Plans</a></li>
+                <li ui-sref-active="active"><a ui-sref="data-table">Data Table</a></li>
+                <li ui-sref-active="active"><a ui-sref="photos">All Photos</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="container-fluid">
-      <div ui-view=""></div>
-    </div>
+      <div id="ui-view" class="container-fluid">
+        <div ui-view=""></div>
+      </div>
 
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+      <div class="footer">
+        <div class="container">
+          <div class="row text-center">          
+            <p><span class="glyphicon glyphicon-heart"></span> from <a href="http://specialorange.org/resume" target="_blank">Chris Frisina</a> &amp; <a href="http://thirdlab.cs.vt.edu">Third Lab</a></p>
+          </div>
+        </div>
       </div>
     </div>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
+      // window.fbAsyncInit = function() {
+      //   Parse.FacebookUtils.init({ // this line replaces FB.init({
+      //     appId      : '543719099099823', // Facebook App ID
+      //     status     : true,  // check Facebook Login status
+      //     cookie     : true,  // enable cookies to allow Parse to access the session
+      //     xfbml      : true,  // initialize Facebook social plugins on the page
+      //     version    : 'v2.2' // point to the latest Facebook Graph API version
+      //   });
+     
+      //   // Run code after the Facebook SDK is loaded.
+      // };
+
        !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
        (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
        r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
@@ -86,15 +107,30 @@
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/parse/parse.min.js"></script>
+    <script src="bower_components/parse-angular-patch/dist/parse-angular.js"></script>
+    <script src="bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="bower_components/ng-videosharing-embed/build/ng-videosharing-embed.min.js"></script>
+    <script src="bower_components/spin.js/spin.js"></script>
+    <script src="bower_components/angular-spinner/angular-spinner.js"></script>
+    <script src="bower_components/crossfilter/crossfilter.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/ng-crossfilter/dist/ng-crossfilter.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/dataTableController.js"></script>
         <script src="scripts/controllers/dataTableInfoController.js"></script>
+        <script src="scripts/controllers/homeController.js"></script>
         <script src="scripts/controllers/photoController.js"></script>
-        <script src="scripts/factories/studentFactory.js"></script>
+        <script src="scripts/controllers/lessonPlanController.js"></script>
+        <script src="scripts/directives/student-row.js"></script>
+        <script src="scripts/directives/usSpinner.js"></script>
+        <script src="scripts/services/fileUpload.js"></script>
         <!-- endbuild -->
+
 </body>
 </html>

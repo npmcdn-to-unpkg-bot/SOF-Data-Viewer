@@ -1,1 +1,25 @@
-Lesson Plans
+<div class="container-fluid">
+  <div class="row">
+    <div ng-repeat="day in lessonPlans" class="lesson-plans col-md-12">
+      <div class="day-name">
+        <h1>Day {{day[0].get('activity_id').get('activityDay')}}</h1>
+      </div>
+      <div class="container-fluid">
+        <div ng-repeat="lessonPlan in day" class="lesson-plan-div col-md-2">
+          <div ng-show="lessonPlan.get('subActivity')">
+            <div><h5>Activity {{lessonPlan.get('activity_id').get('activityNumberDescription')}} ({{lessonPlan.get('subActivity')}}) :</h5></div>
+          </div>
+          <div ng-show="!lessonPlan.get('subActivity')">
+            <div><h5>Activity {{lessonPlan.get('activity_id').get('activityNumberDescription')}} :</h5></div>
+          </div>
+          <div class="lesson-plan-name"><h4>{{lessonPlan.get('activity_id').get('activityName')}}</h4></div>
+          <!-- <span us-spinner spinner-off="isLoading"></span> -->
+          <a ng-click="openLightboxModal(lessonPlan.imageIndex)">
+            <img class="lesson-plan-image" ng-src="{{lessonPlan.get('file')._url}}">        
+          </a>
+        </div>
+      </div>
+      <hr ng-if="!$last">
+    </div>
+  </div>
+</div>

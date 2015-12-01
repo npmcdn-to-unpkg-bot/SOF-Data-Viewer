@@ -1,3 +1,92 @@
+.sof img:hover {
+  cursor: pointer;
+  opacity: .5;
+}
+.irb .jpg img:hover {
+  cursor: pointer;
+  opacity: .5;
+}
+.top-buffer { 
+  margin-top:20px;
+}
+.word-wrap {
+  word-wrap: break-word;
+}
+.center {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+p:last-child {
+  margin-bottom: 0px;
+}
+.card-top {
+  margin-top: 5px;
+}
+.card {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+}
+.selected {
+
+}
+.unselected {
+  background-color: white;
+  filter:alpha(opacity=50); /* IE */
+  opacity: 0.5; /* Safari, Opera */
+  -moz-opacity:0.50; /* FireFox */
+  background-repeat:no-repeat;
+}
+.photo {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 5px;
+}
+.photo a:hover{
+  cursor: pointer;
+  opacity: .5;
+}
+.multiSelectItem {
+  margin-right: 10px;
+}
+.photo-image {
+  width: 100%;
+  border-radius: 15px;
+  border: 1px solid lightgrey;
+}
+.lightbox-image-caption{
+  left: -55%;
+  max-width: 50%
+}
+.lesson-plan-name {
+  min-height: 40px;
+}
+.day-name{
+  text-align: center;
+}
+.lesson-plan-div {
+  padding: 5px;
+}
+.lesson-plan-image {
+  border: 1px solid black;
+  border-radius: 10px;
+  width: 100%;
+  padding: 5px;
+}
+
+.lesson-plans {
+
+}
+.student-day-data:hover {
+  background-color: lightgray;
+  /*border: 1px solid black;*/
+}
+.data-table{
+  overflow-x: scroll;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -5,8 +94,11 @@
   padding: 0.2em 0;
 }
 
+html,
 body {
-  padding: 0;
+   margin:0;
+   padding:5px;
+   height:100%;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -29,12 +121,27 @@ body {
   line-height: 40px;
   padding-bottom: 19px;
 }
-
 /* Custom page footer */
+#main-container{
+  min-height:100%;
+  position:relative;
+}
+#ui-view {
+  padding: 10px;
+  padding-bottom:70px;   /* Height of the footer */
+}
 .footer {
+  height:60px;   /* Height of the footer */
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin-top: 10px;
   padding-top: 19px;
+  padding-right: 15px;
+  padding-left: 15px;
   color: #777;
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid orange;
 }
 
 .container-narrow > hr {
@@ -74,7 +181,7 @@ body {
   }
   /* Space out the masthead */
   .header {
-    margin-bottom: 30px;
+    margin-bottom: 5px;
   }
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {

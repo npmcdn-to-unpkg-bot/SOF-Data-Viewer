@@ -1,5 +1,33 @@
 <div class="container-fluid">
   <div class="row">
+    <div class="col-xs-3 col-xs-offset-1">    
+      We approach our daily lesson plans and activities similar guided by XXX and use the 'DO', 'ASK', and 'TAKEAWAY' to help guide us in instructing the students.
+
+      <p>Each Lesson plan has the following:</p>
+      <ul>
+        <li>A Name to help reference the activity</li>
+        <li>A materials list to help plan</li>
+        <li>Setup guidance for each activity</li>
+        <li>Notes for assisting Facilitators or helpers</li>
+        <li>A location to help remind the researchers which location is receiving the lesson plans</li>
+        <li>The day, activity number for that day, and an estimation of how long the activity will take.</li>
+        <li>One (or more) task that the teacher and/or student(s) will perform.</li>
+        <li>Questions that coincide with each 'DO' activity.</li>
+        <li>A guiding Takeaway message to help the teachers, researchers, and facilitators guide their teaching decisions when working with the student(s).</li>
+        <li>A list of the Virginia Standards Of Learning (SoL) numbers and brief description.</li>
+      </ul>
+    </div>
+    <div class="col-xs-4 col-xs">    
+      <a ng-click="openLightboxModal(0)">
+        <img title="Click to Enlarge this Lesson Plan" class="lesson-plan-image" ng-src="/images/blank-activity.jpg">        
+      </a>
+    </div>
+    <div class="col-xs-4">
+      Please note, that research and class instruction is not perfect.   If you notice a difference between the lesson plan(s) here and the activities for a group in the <a ui-sref="data-table">Data Table</a>, that is because the circumstances for that day, group of students, or other causes warranted a change in direction, and we accommodated.  Those activities are marked.
+    </div>
+  </div>
+  <hr>
+  <div class="row">
     <div ng-repeat="day in lessonPlans" class="lesson-plans col-md-12">
       <div class="day-name">
         <h1>Day {{day[0].get('activity_id').get('activityDay')}}</h1>
@@ -14,7 +42,7 @@
           </div>
           <div class="lesson-plan-name"><h4>{{lessonPlan.get('activity_id').get('activityName')}}</h4></div>
           <!-- <span us-spinner spinner-off="isLoading"></span> -->
-          <a ng-click="openLightboxModal(lessonPlan.imageIndex)">
+          <a title="Click to Enlarge this Lesson Plan" ng-click="openLightboxModal(lessonPlan.imageIndex)">
             <img class="lesson-plan-image" ng-src="{{lessonPlan.get('file')._url}}">        
           </a>
         </div>

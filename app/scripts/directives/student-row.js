@@ -14,7 +14,7 @@ angular.module('sofDataViewerApp')
         // var studentRef = new Firebase("https://sof-data.firebaseio.com/students/"+scope.ngModel);
         // The student object/class from FB
         // scope.student = $firebaseObject(studentRef);
-        scope.name = scope.ngModel;
+        scope.student = scope.ngModel;
         // TODO get school name from parent scope
       }
     };

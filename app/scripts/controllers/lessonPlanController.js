@@ -19,6 +19,8 @@ angular.module('sofDataViewerApp')
           $scope.days = [];
           $scope.lessonPlans = [];
           $scope.images = [];
+          $scope.images.push({'url':'/images/blank-activity.jpg',
+                              'label': 'Blank Lesson Plan'});
           for (var i = 0; i < results.length; i++) {
             var lessonPlanDay = results[i].get('activity_id').get('activityDay');
             var lessonPlan = results[i];

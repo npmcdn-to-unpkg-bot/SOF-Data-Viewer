@@ -28,7 +28,7 @@
       <!-- Add your site or application content here -->
       <div class="header">
         <div class="navbar navbar-default" role="navigation">
-          <div class="container">
+          <!-- <div class="container-fluid"> -->
             <div class="navbar-header">
 
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
@@ -37,21 +37,33 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-
-              <a class="navbar-brand" ui-sref="home">SOF Data Viewer</a>
             </div>
+            <a class="navbar-brand" ui-sref="home">SoF Data Viewer</a>
 
-            <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
+            <div class="navbar-collapse collapse navbar-center" id="js-navbar-collapse">
               <ul class="nav navbar-nav">
-                <!-- <li class="active"><a ui-sref="data-table.info">Data Table</a></li> -->
                 <li ui-sref-active="active"><a ui-sref="curriculum">Curriculum</a></li>
-                <li ui-sref-active="active"><a ui-sref="lesson-plans">Daily Lesson Plans</a></li>
+                <li ui-sref-active="active"><a ui-sref="lesson-plans">Lesson Plans</a></li>
                 <li ui-sref-active="active"><a ui-sref="data-table">Data Table</a></li>
                 <li ui-sref-active="active"><a ui-sref="photos">All Photos</a></li>
               </ul>
+
+              <form class="nav navbar-nav navbar-form navbar-right" ng-hide="currentUser">
+                <div class="form-group">
+                  <input type="text" class="form-control" ng-model="user.username" placeholder="Username" />
+                  <input type="password" class="form-control" ng-model="user.password" placeholder="Password" />
+                </div>
+                <button label="Login" class="btn btn-default" ng-click="logIn(user)">Sign In</button>
+              </form>
+             
+              <div ng-show="currentUser" class="nav navbar-nav navbar-right">
+                <p class="navbar-text ">Welcome {{currentUser.get('username')}}!
+                </p>
+                <button label="Logout" class="btn btn-default logout" ng-click="logOut()">Log Out</button>
+              </div>
             </div>
-          </div>
+
+          <!-- </div> -->
         </div>
       </div>
 
@@ -104,15 +116,12 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
-    <script src="bower_components/firebase/firebase.js"></script>
-    <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/parse/parse.min.js"></script>
     <script src="bower_components/parse-angular-patch/dist/parse-angular.js"></script>
     <script src="bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
-    <script src="bower_components/ng-videosharing-embed/build/ng-videosharing-embed.min.js"></script>
     <script src="bower_components/spin.js/spin.js"></script>
     <script src="bower_components/angular-spinner/angular-spinner.js"></script>
     <script src="bower_components/crossfilter/crossfilter.js"></script>
@@ -129,8 +138,8 @@
         <script src="scripts/controllers/lessonPlanController.js"></script>
         <script src="scripts/directives/student-row.js"></script>
         <script src="scripts/directives/usSpinner.js"></script>
+        <script src="scripts/services/userService.js"></script>
         <script src="scripts/services/fileUpload.js"></script>
         <!-- endbuild -->
-
 </body>
 </html>

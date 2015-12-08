@@ -8,6 +8,7 @@
  *
  * Main module of the application.
  */
+
 var app = angular // jshint ignore:line 
   .module('sofDataViewerApp', [
     'ngAnimate',
@@ -17,11 +18,9 @@ var app = angular // jshint ignore:line
     'ngSanitize',
     'ui.bootstrap',
     'smart-table',
-    'firebase',
     'ui.router',
     'ngTouch',
     'angular-loading-bar',
-    'videosharing-embed',
     'bootstrapLightbox',
     'angularSpinner',
     'ngCrossfilter'
@@ -32,8 +31,10 @@ var app = angular // jshint ignore:line
             // Used by  ng-ui-router    ng-ui-router        normal ng
   // .config(function ($stateProvider, $urlRouterProvider, $routeProvider) {
   .config(function ($stateProvider, $urlRouterProvider, LightboxProvider, usSpinnerConfigProvider) {
+    // $rootScope.dateNow = new Date();
+
     Parse.initialize('asdf', 'asdf');
- 
+
     // For any unmatched url, redirect to /state1
     $urlRouterProvider.otherwise('/');
     // Now set up the states
@@ -50,7 +51,7 @@ var app = angular // jshint ignore:line
         controller: 'dataTableController'
       })
       .state('data-table.info', {
-        url: '/info/?studentStudyName?day?activity?schoolName',
+        url: '/info/?studentStudyName?day?activity?schoolName?grade?gender',
         templateUrl: 'views/partials/dataPage.rightInfo.html',
         controller: 'dataTableInfoController'
       })
@@ -63,7 +64,8 @@ var app = angular // jshint ignore:line
       })
       .state('curriculum', {
         url: '/curriculum',
-        templateUrl: 'views/partials/curriculum.html'
+        templateUrl: 'views/partials/curriculum.html',
+        controller: 'curriculumController'
       })
       .state('lesson-plans', {
         url: '/lesson-plans',

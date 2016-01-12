@@ -3,22 +3,353 @@
     <div class="row">
       <div class="col-xs-12">
         <h2 class="text-center">Our Guidance</h2>
-        We used the US National Common Core and the Virginia Standards of Learning (SOL).
+        <div class="text-center">We used the <a href="http://www.doe.virginia.gov/testing/sol/standards_docs/mathematics/" title="Virginia Standards of Learning (SOLs)" target="_blank">Virginia Standards of Learning</a> (SOL) and the United States <a href="http://www.corestandards.org/Math/" title="Common Core Standards" target="_blank">Common Core</a> as our initial survey of what goals and requirements students and teachers are striving to achieve.
+        We reviewed each grade level's components, in particular the components that focus around the core ideas of teaching fractions through alternative, embodied, mediated, and musical methods.</div>
       </div>
     </div>
     <div class="row">
-    <div class="col-xs-4 col-xs-offset-1 top-buffer text-center">
-      VA SOL
+      <div class="col-xs-4 col-xs-offset-1 top-buffer text-center">
+        <h3><a href="http://www.doe.virginia.gov/testing/sol/standards_docs/mathematics/" title="Virginia Standards of Learning (SOLs)" target="_blank">Virginia Standards of Learning</a></h3>
+        VA SOLs related to the Sound of Fractions
+      </div>
+      <div class="col-xs-4 col-xs-offset-2 top-buffer text-center">
+        <h3><a href="http://www.corestandards.org/Math/" title="Common Core Standards" target="_blank">Common Core</a></h3>
+        Common Core standards related to the Sound of Fractions
+      </div>
     </div>
-    <div class="col-xs-4 col-xs-offset-2 top-buffer text-center">
-      Common Core
+
+    <div ng-show="!guidanceViewed" class="row">
+      <div class="row">
+        <h3 class="text-center">Grade 2</h3>
+      </div>
+      <div class="row">
+        <div class="col-xs-5 col-xs-offset-1 top-buffer">
+            <li>2.3 Identify Fractions as real numbers
+              <ol>
+                <li>identify the parts of a set and/or region that represent fractions for halves, thirds, fourths, sixths, eighths, and tenths</li>
+                <li>write the fractions</li>
+                <li>compare the unit fractions for halves, thirds, fourths, sixths, eighths, and tenths</li>
+              </ol>
+            </li>
+            <li>2.20 Identify and create patterns
+              <ul>
+                <li>The student will identify, create, and extend a wide variety of patterns</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="col-xs-5 top-buffer">
+          <ul>Grade 2
+            <li>2.3 Identify Fractions as real numbers
+              <ol>
+                <li>identify the parts of a set and/or region that represent fractions for halves, thirds, fourths, sixths, eighths, and tenths</li>
+                <li>write the fractions</li>
+                <li>compare the unit fractions for halves, thirds, fourths, sixths, eighths, and tenths</li>
+              </ol>
+            </li>
+            <li>2.20 Identify and create patterns
+              <ul>
+                <li>The student will identify, create, and extend a wide variety of patterns</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id="guidance" class="row text-center" ng-click="toggleGuidance()">
+        <h3>Click to see all related SOL and Common Core standards...</h3>
+      </div>
     </div>
+
+    <div ng-show="guidanceViewed" class="row" ng-click="toggleGuidance()">
+      <div class="row">
+        <h3 class="text-center">Grade 2</h3>
+      </div>
+
+      <div class="col-xs-5 col-xs-offset-1 top-buffer">
+        <ul>
+          <li>2.3 Identify Fractions as real numbers
+            <ol>
+              <li>identify the parts of a set and/or region that represent fractions for halves, thirds, fourths, sixths, eighths, and tenths</li>
+              <li>write the fractions</li>
+              <li>compare the unit fractions for halves, thirds, fourths, sixths, eighths, and tenths</li>
+            </ol>
+          </li>
+          <li>2.20 Identify and create patterns
+            <ul>
+              <li>The student will identify, create, and extend a wide variety of patterns</li>
+            </ul>
+          </li>
+        </ul>
+
+        <ul>Grade 3
+          <li>3.7 Add/Subtract Like denominators 
+            <ul>
+              <li>The student will add and subtract proper fractions having like denominators of 12 or less</li>
+            </ul>
+          </li>
+          <li>3.19 Extend Pattern Representations
+            <ul>
+              <li>The student will recognize and describe a variety of patterns formed using numbers, tables, and pictures, and extend the patterns, using the same or different forms</li>
+            </ul>
+          </li>
+        </ul>
+
+        <ul>Grade 4
+          <li>4.2.a Compare and order fractions
+            <ul>
+              <li>compare and order fractions and mixed numbers</li>
+            </ul>
+          </li>
+          <li>4.2.b Identify Equivalent Fractions
+            <ul>
+              <li>represent equivalent fractions</li>
+              <li>identify the division statement that represents a fraction</li>
+            </ul>
+          </li>
+          <li>4.5 Factors and Simplification
+            <ul>
+              <li>determine common multiples and factors, including least common multiple and greatest common factor</li>
+              <li>add and subtract fractions having like and unlike denominators that are limited to 2, 3, 4, 5, 6, 8, 10, and 12, and simplify the resulting fractions, using common multiples and factors</li>
+              <li>solve single-step and multi-step practical problems involving addition and subtraction with fractions and with decimals</li>
+            </ul>
+          </li>
+          <li>4.12 Introduction to Polygons
+            <ul>
+              <li>define polygon</li>
+              <li>identify polygons with 10 or fewer sides</li>
+            </ul>
+          </li>
+        </ul>
+
+        <ul>Grade 5
+          <li>5.2 Equivalence and order of fractions
+            <ul>
+              <li>recognize and name fractions in their equivalent decimal form and vice versa</li>
+              <li>compare and order fractions and decimals in a given set from least to greatest and greatest to least</li>
+            </ul>
+          </li>
+          <li>5.6 Fractions and mixed Numbers
+            <ul>
+              <li>Solve single-step and multi-step practical problems involving addition and subtraction with fractions and mixed numbers and express answers in simplest form</li>
+            </ul>
+          </li>
+        </ul>
+
+        <ul>Grade 6
+          <li>6.2 Order, Equivalence, and representation form of fractions
+            <ul>
+              <li>investigate and describe fractions, decimals and percents as ratios</li>
+              <li>identify a given fraction, decimal or percent from a representation</li>
+              <li>Demonstrate equivalent relationships among fractions, decimals, and percents</li>
+              <li>Compare and order fractions, decimals, and percents</li>
+            </ul>
+          </li>
+          <li>6.4 Representations of multiplication and division
+            <ul>
+              <li>The student will demonstrate multiple representations of multiplication and division of fractions</li>
+            </ul>
+          </li>
+          <li>6.6 Mixed Number operations
+            <ul>
+              <li>Multiply and divide fractions and mixed numbers</li>
+            </ul>
+          </li>
+        </ul>
+  
+        <ul>Grade 7
+          <li>7.12 Making Representations
+            <ul>
+              <li>The student will represent relationships with tables, graphs, rules, and words</li>
+            </ul>
+          </li>
+        </ul>
+  
+        <ul>Grade 8
+          <li>8.14 Identify relationships between representations
+            <ul>
+              <li>The student will make connections between any two representations (tables, graphs, words, and rules) of a given relationship</li>
+            </ul>
+          </li>
+        </ul>
+
+      </div>
+      <div class="col-xs-5  top-buffer">
+        <ul>Grade 1
+          <li>1.MD.C.4
+            <ul>
+              <li>Represent and Interpret Data</li>
+              <li>Categorize data and compare categories in terms of more/less and total/whole</li>
+            </ul>
+          </li>
+          <li>1.MD.A.1
+            <ul>
+              <li>Measure Lengths indirectly and by iterating length units</li>
+              <li>Order 3 objects by length, using a third object as reference</li>
+            </ul>
+          </li>
+        </ul>
+
+        <ul>Grade 3
+          <li>3.NF.A.1
+            <ul>
+              <li>Develop Understanding of fractions as Numbers</li>
+              <li>Understand 1/b as 1 part of one whole partitioned into ‘b’ equal parts</li>
+              <li>a/b means ‘a’ parts of size ‘a/b’</li>
+            </ul>
+          </li>
+          <li>3.NF.A.3
+            <ul>
+              <li>Explain equivalence of fractions and compare fractions by reasoning about their size</li>
+              <li>Explain equivalence and comparison of fractions by size
+                <ol>
+                  <li>a) Two fractions are equivalent if they have the same size</li>
+                  <li>b) recognize and generate simple equivalent fractions</li>
+                  <li>c)recognize whole numbers as fractions</li>
+                  <li>d) Compare 2 fractions with the same numerator or denominator with <, >, =</li>
+                  <li>Recognize comparisons only valid when wholes are the same</li>
+                </ol>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <ul>Grade 4
+          <li>4.NF.A.1
+            <ul>
+              <li>Extend Understanding of Fraction Equivalence and Ordering</li>
+              <li>Understand a/b is equivalent to same fraction multiplied by a constant number</li>
+            </ul>
+          </li>
+          <li>4.NF.A.2
+            <ul>
+              <li>Compare two fractions with >, <, = with different numerator and/or denominator</li>
+              <li>Recognize comparisons only valid when wholes are the same</li>
+            </ul>
+          </li>
+          <li>4.NF.B.3
+            <ul>
+              <li>Build Fractions from Unit Fraction</li>
+              <li>a/b understand as ‘a’ sum of ‘1/b’ fractions</li>
+              <li>understand addition and subtraction of fractions as joining and separating parts of the same whole</li>
+              <li>take apart a fraction that is not a unit fraction into a sum of fractions with the same denominator in more than one way</li>
+              <li>add and subtract mixed numbers by converting into their equivalent fraction</li>
+              <li>add and subtract fractions having the same denominator by utilizing visual fractions and equations</li>
+            </ul>
+          </li>
+          <li>4.NF.B.4 - Multiplying a fraction by a whole number
+            <ul>
+              <li>understand a/b as a multiple of 1/b</li>
+              <li>whole number multiplied by 1/b is a/b</li>
+              <li>solve problems with multiplying a fraction by a whole numbers by using visual models and equations</li>
+            </ul>
+          </li>
+          <li>4.MD.B.4 - Represent and interpret Data
+            <ul>
+              <li>Create a line plot to display unit fractions, and use this for addition and subtraction</li>
+            </ul>
+          </li>
+        </ul>
+
+        <ul>Grade 5
+          <li>5.NF.A.1 - Use Equivalent fractions as a strategy to add and subtract fractions
+            <ul>
+              <li>Add and subtract fractions with unlike denominators</li>
+            </ul>
+          </li>
+          <li>5.NF.A.2 - Solve word problems with addition and subtraction
+            <ul>
+              <li>Include fractions with unlike denominators by using visual models and equations</li>
+            </ul>
+          </li>
+          <li>5.NF.B.3
+            <ul>
+              <li>Apply and extend previous understandings of multiplication and division</li>
+              <li>Interpret a fraction as a division of the numerator by denominator</li>
+            </ul>
+          </li>
+          <li>5.NF.B.4 - Multiplying a fraction by a whole number or fraction
+            <ul>
+              <li>interpret a/b x ‘q’ as ‘a’ parts of a part of ‘q’ into ‘b’ equal parts</li>
+            </ul>
+          </li>
+          <li>5.NF.B.F.B
+            <ul>
+              <li>Multiplying a number by a fraction greater than 1 creates a product greater than the given number</li>
+            </ul>
+          </li>
+          <li>5.NF.B.6
+            <ul>
+              <li>Solve problems with multiplication of fractions and mixed numbers by using fraction models and equations</li>
+            </ul>
+          </li>
+          <li>5.NF.B.7 - Divide unit fractions by whole numbers and whole numbers by unit fractions
+            <ul>
+              <li>division of unit fraction by a non-zero whole number</li>
+              <li>division of whole number by unit fraction</li>
+              <li>solve problems involving division of unit fractions by non-zero whole numbers and division of whole numbers by unit fractions</li>
+            </ul>
+          </li>
+          <li>5.MD.B.2 - Represent and interpret Data
+            <ul>
+              <li>Create line plot of unit fractions and use this information and fraction operations to solve problems using the data presented</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
+
   <div class="card top-buffer">
-    <div class="row">
-      <div class="col-xs-12">
-        <h2 class="text-center">Our Inspiration</h2>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="text-center">Our Inspiration</h2>
+          <p class="text-center">some text</p>
+        </div>
+      </div>
+      <div class="row">
+        <h3>We start at...</h3>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 top-buffer text-center">
+          1L
+        </div>
+        <div class="card col-xs-6 top-buffer text-center">
+          1R
+        </div>
+      </div>
+      <div class="row">
+        <h3>Then we got to...</h3>
+      </div>
+      <div class="row">
+        <div class="card col-xs-6 top-buffer text-center">
+          2L
+        </div>
+        <div class="col-xs-6 top-buffer text-center">
+          2R
+        </div>
+      </div>
+      <div class="row">
+        <h3>And on to...</h3>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 top-buffer text-center">
+          3L
+        </div>
+        <div class="card col-xs-6 top-buffer text-center">
+          3R
+        </div>
+      </div>
+      <div class="row">
+        <h3>And finish with...</h3>
+      </div>
+      <div class="row">
+        <div class="card col-xs-6 top-buffer text-center">
+          4L
+        </div>
+        <div class="col-xs-6 top-buffer text-center">
+          4R
+        </div>
       </div>
     </div>
   </div>

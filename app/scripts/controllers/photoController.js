@@ -12,6 +12,16 @@ angular.module('sofDataViewerApp')
     var pictures = Parse.Object.extend('Picture');
     var query = new Parse.Query(pictures);
 
+    Object.size = function(obj) {
+      var size = 0, key;
+      for (key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          size++;
+        }
+      }
+      return size;
+    };
+
     query.include( ['school_id',
                     'activity_id',
                     'student_id'
@@ -26,72 +36,90 @@ angular.module('sofDataViewerApp')
 
           // Making the array of photos
           results.forEach(function(picture, index){
-            var indPicture = picture;
-            // adding attributes to make them easier to access
-            indPicture.imageIndex = index;
-            indPicture.ticked = true;
-            indPicture.name = picture.get('name');
-            indPicture.activity = picture.get('activity_id');
-            indPicture.groupStudyName = picture.get('student_id').get('school_id').get('studyName');
-            indPicture.groupNumber = picture.get('student_id').get('school_id').get('groupNumber');
-            indPicture.student = picture.get('student_id');
-            indPicture.studentStudyName = picture.get('student_id').get('studyFirstName');
-            indPicture.studentStudyID = picture.get('student_id').get('studyId');
-            indPicture.uniqueActivityNumber = picture.get('activity_id').get('activityNumber');
-            indPicture.activityDay = picture.get('activity_id').get('activityDay');
-            indPicture.activityNumberThatDay = picture.get('activity_id').get('activityNumberDescription');
+            picture.imageIndex = index;
             // Add it to the array of pictures
-            $scope.pictures.push(indPicture);
-            // This array is for Lightbox
+            $scope.pictures.push(picture);
+            // This array is for Lightbox so you can click on it and the picture will enlarge
             $scope.lightboxImageArray.push({  'url': picture.get('file')._url,
                                               'label': picture.get('name') });
-          }, this);
+            // some attributes available
+              // name = picture.get('name');
+              // activity = picture.get('activity_id');
+              // groupStudyName = picture.get('student_id').get('school_id').get('studyName');
+              // groupNumber = picture.get('student_id').get('school_id').get('groupNumber');
+              // student = picture.get('student_id');
+              // studentStudyName = picture.get('student_id').get('studyFirstName');
+              // studentStudyID = picture.get('student_id').get('studyId');
+              // uniqueActivityNumber = picture.get('activity_id').get('activityNumber');
+              // activityDay = picture.get('activity_id').get('activityDay');
+              // activityNumberThatDay = picture.get('activity_id').get('activityNumberDescription');
+          });
 
           $scope.XFilterPhotos = new Crossfilter(results, 'id', 'persistent', ['name','date', 'id', 'href', 'activity'] );
 
-          // GROUPS
-          var dimensionByGroupName = $scope.XFilterPhotos.addDimension( 'groupName', function byDay(p) { return p.get('student_id').get('school_id').get('studyName'); }); // jshint ignore:line
+          //****** GROUPS ******//
+          $scope.groupsToKeepTrackOf = {};
+          // add a dimension by GroupName
+          $scope.XFilterPhotos.addDimension( 'groupName', function byGroupName(p) {
+            $scope.groupsToKeepTrackOf[p.get('student_id').get('school_id').get('studyName')] = false;
+            return p.get('student_id').get('school_id').get('studyName');
+          });
+          $scope.groupsToKeepTrackOfSize = Object.size($scope.groupsToKeepTrackOf);
           $scope.groupNames = $scope.XFilterPhotos.groupBy('groupName');
-          var dimensionByGroupNumber = $scope.XFilterPhotos.addDimension( 'groupNumber', function byDay(p) { return p.get('student_id').get('school_id').get('groupNumber'); }); // jshint ignore:line
-          $scope.groupNumbers = $scope.XFilterPhotos.groupBy('groupNumber');
+          // UNUSED
+          // var dimensionByGroupNumber = $scope.XFilterPhotos.addDimension( 'groupNumber', function byGroupNumber(p) { return p.get('student_id').get('school_id').get('groupNumber'); }); // jshint ignore:line
+          // $scope.groupNumbers = $scope.XFilterPhotos.groupBy('groupNumber');
 
-          // DAYS
+          //****** DAYS ******//
           $scope.daysToKeepTrackOf = {};
-          var dimensionByDay = $scope.XFilterPhotos.addDimension( 'dayNumber', function byDay(p) { 
+          // add a dimension by day
+          $scope.XFilterPhotos.addDimension( 'dayNumber', function byDay(p) { 
             $scope.daysToKeepTrackOf[p.get('activity_id').get('activityDay')] = false;
             return p.get('activity_id').get('activityDay');
-          }); // jshint ignore:line
+          });
           $scope.dayNumbers = $scope.XFilterPhotos.groupBy('dayNumber');
-          window.csd = dimensionByDay;
-          window.csf = $scope.dayNumbers;
-          // ACTIVITIES
-          var dimensionByDayAndActivityNumber = $scope.XFilterPhotos.addDimension( 'dayAndActivityNumber', function byName(p) { return p.get('activity_id').get('activityDay') + ' - '+ p.get('activity_id').get('activityNumberDescription'); }); // jshint ignore:line
+
+          //****** ACTIVITIES ******//
+          $scope.dayAndActivitiesToKeepTrackOf = {};
+          // add a dimension by day and activityNumber
+          $scope.XFilterPhotos.addDimension( 'dayAndActivityNumber', function byActivityNumber(p) {
+            $scope.dayAndActivitiesToKeepTrackOf[p.get('activity_id').get('activityDay') + ' - '+ p.get('activity_id').get('activityNumberDescription')] = false;
+            return p.get('activity_id').get('activityDay') + ' - '+ p.get('activity_id').get('activityNumberDescription');
+          }); // jshint ignore:line
           $scope.dayAndActivityNumbers = $scope.XFilterPhotos.groupBy('dayAndActivityNumber'); // jshint ignore:line
-          var dimensionByActivityName = $scope.XFilterPhotos.addDimension( 'activityName', function byName(p) { return p.get('activity_id').get('activityName'); }); // jshint ignore:line
-          $scope.activityNames = $scope.XFilterPhotos.groupBy('activityName'); // jshint ignore:line
-          var dimensionByUniqueActivityNumber = $scope.XFilterPhotos.addDimension( 'uniqueActivityNumber', function byDay(p) { return p.get('activity_id').get('activityNumber'); }); // jshint ignore:line
-          $scope.uniqueActivityNumbers = $scope.XFilterPhotos.groupBy('uniqueActivityNumber'); // jshint ignore:line
+          // UNUSED
+          // var dimensionByActivityName = $scope.XFilterPhotos.addDimension( 'activityName', function byName(p) { return p.get('activity_id').get('activityName'); }); // jshint ignore:line
+          // $scope.activityNames = $scope.XFilterPhotos.groupBy('activityName'); // jshint ignore:line
+          // var dimensionByUniqueActivityNumber = $scope.XFilterPhotos.addDimension( 'uniqueActivityNumber', function byUniqueActivityNumber(p) { return p.get('activity_id').get('activityNumber'); }); // jshint ignore:line
+          // $scope.uniqueActivityNumbers = $scope.XFilterPhotos.groupBy('uniqueActivityNumber'); // jshint ignore:line
 
-          // STUDENTS
-          var dimensionByStudentStudyID = $scope.XFilterPhotos.addDimension( 'studentStudyID', function byDay(p) { return p.get('student_id').get('studyId'); }); // jshint ignore:line
-          $scope.studentIDs = $scope.XFilterPhotos.groupBy('studentStudyID'); // jshint ignore:line
-          
-          var dimensionByStudentStudyNames = $scope.XFilterPhotos.addDimension( 'studentStudyNames', function byDay(p) { return p.get('student_id').get('studyFirstName'); }); // jshint ignore:line
+          //****** STUDENTS ******//
+          $scope.studentsToKeepTrackOf = {};
+          // add a dimension by student studyNames
+          $scope.XFilterPhotos.addDimension( 'studentStudyNames', function byStudentName(p) {
+            $scope.studentsToKeepTrackOf[p.get('student_id').get('studyFirstName')] = false;
+            return p.get('student_id').get('studyFirstName');
+          });
           $scope.studentStudyNames = $scope.XFilterPhotos.groupBy('studentStudyNames'); // jshint ignore:line
+          // UNUSED
+          // var dimensionByStudentStudyID = $scope.XFilterPhotos.addDimension( 'studentStudyID', function byStudentID(p) { return p.get('student_id').get('studyId'); }); // jshint ignore:line
+          // $scope.studentIDs = $scope.XFilterPhotos.groupBy('studentStudyID'); // jshint ignore:line
 
+          //****** LABELS ******//
+          $scope.labelsToKeepTrackOf = {};
+          // Add a dimension by label
+          $scope.XFilterPhotos.addDimension( 'labels', function byLabel(p) {
+            // $scope.labelsToKeepTrackOf[p.get('labels')] = false;
+            // return p.get('labels');
+            return 'labels';
+          }); // jshint ignore:line
+          $scope.labels = $scope.XFilterPhotos.groupBy('labels'); // jshint ignore:line
+
+          // For when the crossfilter is updated....
           $scope.$on('crossfilter/updated', function(event, collection, identifier) {
-            // console.warn('the crossfilter was updated');
           });
 
-
-          // Voila!
-          // $scope.words = new Crossfilter(response.data, '$id', 'persistent');
-          // $scope.words.addDimension('wordCount', function wordCount(model) {
-              // return model.word.length;
-          // });
-
-          // $scope.countGrouped = $scope.words.groupBy('wordCount');
-          // $scope.$ngc = new Crossfilter(results);
+          //****** SPINNER ******//
           $scope.loading = false;
         });
       },
@@ -107,72 +135,65 @@ angular.module('sofDataViewerApp')
     $scope.openLightboxModal = function (index) {
       Lightbox.openModal($scope.lightboxImageArray, index);
     };
-    var groupNumberFilter = function(expected, actual){
-      return expected.some(function (group) {
-        return group.ticked===true && group.groupNumber === actual;
-      });
+
+    // FILTERS
+    var groupFilter = function(expected, actual){
+      return $scope.groupsToKeepTrackOf[actual];
+    };
+    var dayFilter = function(expected, actual){
+      // This function is called for each photo,
+      // Expected is the day the user clicked
+      // Actual is the current photo's day
+      return $scope.daysToKeepTrackOf[actual];
     };
     var studentFilter = function(expected, actual){
-      return expected.some(function (student) {
-        console.log(student);
-        console.log(expected);
-        console.log(actual);      
-        return student.ticked===true && student.studentStudyID === actual;
-      });
+      return $scope.studentsToKeepTrackOf[actual];
     };
-    var individualActivityFilter = function(expected, actual){
-      return expected.some(function (activity) {
-        return activity.ticked===true && activity.uniqueActivityNumber === actual;
-      });
+    var dayAndActivityNumberFilter = function(expected, actual){
+      return $scope.dayAndActivitiesToKeepTrackOf[actual];
     };
-    var activityFilter = function(expected, actual){
-      return expected.some(function (day) {
-        return day.ticked===true && day.day === actual;
-      });
+    var labelFilter = function(expected, actual){
+      return $scope.labelsToKeepTrackOf[actual];
     };
 
-    var dayFilter = function(expected, actual){
-      console.log(expected)
-      console.log(actual)
-      // This function is called for each day,
-      // Expected is the day the user clicked
-      // Actual is 
-      return $scope.daysToKeepTrackOf[actual];
+    // FILTER FUNCTIONS
+    // var filterCounter = function(categoryName){
+    //   var scopeCounter = '$scope' + categoryName + 'Counter';
+    //   $scope.+categoryName+'Counter' = 
+    // };
+    $scope.groupsCounter = function(){
+      var counter = 0;
+      for (var key in $scope.groupsToKeepTrackOf) {
+        if ($scope.groupsToKeepTrackOf[key] === true){
+          counter += 1;
+        }
+      }
+      return counter;
+    };
+    $scope.toggleGroup = function(group){
+      $scope.groupsToKeepTrackOf[group.key] = !$scope.groupsToKeepTrackOf[group.key];
+      $scope.groupsCounter();
+      $scope.XFilterPhotos.filterBy('groupName', group, groupFilter);
     };
     $scope.toggleDay = function(day){
       $scope.daysToKeepTrackOf[day.key] = !$scope.daysToKeepTrackOf[day.key];
-console.log($scope.daysToKeepTrackOf);
       $scope.XFilterPhotos.filterBy('dayNumber', day, dayFilter);
-            // if ($scope.currentCountFilter == count) {
-            //     $scope.currentCountFilter = null;
-            //     $scope.words.unfilterBy('wordCount');
-            //     return;
-            // }
-            // $scope.currentCountFilter = count;
-            // $scope.words.filterBy('wordCount', count);
-
-      // Set the ticked value of the day clicked to its opposite value
-      // var x = $scope.days.filter(function(elem, arg, arr){ return elem.day === dayObject.day;})[0];
-      // x.ticked = !x.ticked;
-      // Filter by all days that ticked values are true
-      // $scope.XFilterPhotos.filterBy('day', $scope.days, dayFilter);
-      // $scope.XFilterActivities.filterBy('activityDay', $scope.days, activityFilter);
-      // $scope.XFilterStudents.filterBy('studentStudyName', $scope.days, studentFilter);
     };
-    $scope.toggleIndividualActivity = function(activityNumberObject){
-      var x = $scope.activities.filter(function(elem, arg, arr){ return elem.uniqueActivityNumber === activityNumberObject.uniqueActivityNumber;})[0];
-      x.ticked = !x.ticked;
-      $scope.XFilterPhotos.filterBy('uniqueActivityNumber', $scope.activities, individualActivityFilter);
-      // $scope.XFilterStudents.filterBy('studentStudyName', $scope.activities, studentFilter);
+    $scope.toggleDayAndActivity = function(dayAndActivity){
+      $scope.dayAndActivitiesToKeepTrackOf[dayAndActivity.key] = !$scope.dayAndActivitiesToKeepTrackOf[dayAndActivity.key];
+      $scope.XFilterPhotos.filterBy('dayAndActivityNumber', dayAndActivity, dayAndActivityNumberFilter);
     };
-    $scope.toggleGroup = function(groupObject){
-      var x = $scope.groups.filter(function(elem, arg, arr){ return elem.groupNumber === groupObject.groupNumber;})[0];
-      x.ticked = !x.ticked;
-      $scope.XFilterPhotos.filterBy('groupNumber', $scope.groups, groupNumberFilter);
+    $scope.toggleStudent = function(student){
+      $scope.studentsToKeepTrackOf[student.key] = !$scope.studentsToKeepTrackOf[student.key];
+      $scope.XFilterPhotos.filterBy('studentStudyNames', student, studentFilter);
     };
-    $scope.toggleStudent = function(studentObject){
-      var x = $scope.students.filter(function(elem, arg, arr){ return elem.studentStudyID === studentObject.studentStudyID;})[0];
-      x.ticked = !x.ticked;
-      $scope.XFilterPhotos.filterBy('studentStudyID', $scope.students, studentFilter);
+    $scope.toggleLabel = function(label){
+      $scope.labelsToKeepTrackOf[label.key] = !$scope.labelsToKeepTrackOf[label.key];
+      $scope.XFilterPhotos.filterBy('labels', label, labelFilter);
+    };
+    // FILTER RESETS
+    $scope.resetAndUnfilterBy = function(thisDimension){
+      console.log(thisDimension);
+      $scope.XFilterPhotos.unfilterBy(thisDimension);
     };
   });

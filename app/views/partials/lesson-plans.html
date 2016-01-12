@@ -19,7 +19,7 @@
     </div>
     <div class="col-xs-4 col-xs">    
       <a ng-click="openLightboxModal(0)">
-        <img title="Click to Enlarge this Lesson Plan" class="lesson-plan-image" ng-src="/images/blank-activity.jpg">        
+        <img title="Click to Enlarge this Lesson Plan" class="lesson-plan-image" ng-src="./images/blank-activity.jpg">        
       </a>
     </div>
     <div class="col-xs-4">
@@ -42,7 +42,7 @@
           </div>
           <div class="lesson-plan-name"><h4>{{lessonPlan.get('activity_id').get('activityName')}}</h4></div>
           <!-- <span us-spinner spinner-off="isLoading"></span> -->
-          <a title="Click to Enlarge this Lesson Plan" ng-click="openLightboxModal(lessonPlan.imageIndex)">
+          <a title="Click to Enlarge this Lesson Plan" ng-click="openLightboxModal(lessonPlan.imageIndex+1)">
             <img class="lesson-plan-image" ng-src="{{lessonPlan.get('file')._url}}">        
           </a>
         </div>

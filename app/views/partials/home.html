@@ -41,13 +41,13 @@
       <div class="card sof">
         <h3 class="text-center">Play with SoF</h3>
         <p><a href="https://compthink.cs.vt.edu:3000" target="_blank">https://compthink.cs.vt.edu:3000</a></p>
-        <img ng-click="openLightboxModal(3)" src="/images/sof-screenshot.jpg" alt="SoF overview Screenshot" width="100%">
+        <img ng-click="openLightboxModal(3)" src="./images/sof-screenshot.jpg" alt="SoF overview Screenshot" width="100%">
       </div>
     </div>
 
     <div class="col-md-2">
       <div class="card card-top">
-        <a href="http://www.npr.org" target="_blank"><img src="../images/npr.png" alt="NPR (National Public Radio)" width="100%"></a>
+        <a href="http://www.npr.org" target="_blank"><img src="./images/npr.png" alt="NPR (National Public Radio)" width="100%"></a>
         <h3 class="text-center">SoF on NPR!</h3>
         <a href="http://wvtf.org/post/virginia-science-festival-party-where-science-guest-honor" target="_blank">
           <i class="fa fa-file-text-o fa-2x"></i> Article
@@ -97,6 +97,7 @@
               <div>Finally, students must defend their descriptions with their peers using standard math terms and descriptions of their rhythms and adjustments.</div>
             </div>
           </div>
+          <div class="row top-buffer">a link to curriculum</div>
         </div>
       </div>
     </div>
@@ -126,7 +127,7 @@
                   <div>The Pile is where additional beats can be added to the main model or placed back here.</div>
                 </div>
                 <div class="col-xs-6 text-center">
-                  <img src="/images/representations/model.jpg" class="rep-img" alt="Model Representation">
+                  <img src="./images/representations/model.jpg" class="rep-img" alt="Model Representation">
                 </div>
                 <div class="col-xs-3">
                   <div>Each representation can be removed by clicking the 'X'.</div>
@@ -143,7 +144,7 @@
               <div class="row rep-group">
                 <div><h2 class="text-center">Audio</h2></div>
                 <div class="col-xs-4 text-center">
-                  <img src="/images/representations/audio.jpg" class="rep-img" alt="Audio Representation">
+                  <img src="./images/representations/audio.jpg" class="rep-img" alt="Audio Representation">
                 </div>
                 <div class="col-xs-8">
                   <ul>
@@ -177,7 +178,7 @@
               <div class="row rep-group">
                 <div><h2 class="text-center">Bead</h2></div>
                 <div class="col-xs-7 text-center">
-                  <img src="/images/representations/bead.jpg" class="rep-img" alt="Bead Representation">
+                  <img src="./images/representations/bead.jpg" class="rep-img" alt="Bead Representation">
                 </div>
                 <div class="col-xs-5">
                   <!-- Model Properties -->
@@ -200,7 +201,7 @@
               <div class="row rep-group">
                 <div><h2 class="text-center">Line</h2></div>
                 <div class="col-xs-7 text-center">
-                  <img src="/images/representations/line.jpg" class="rep-img" alt="Line Representation">
+                  <img src="./images/representations/line.jpg" class="rep-img" alt="Line Representation">
                 </div>
                 <div class="col-xs-5">
                   <ul>
@@ -236,7 +237,7 @@
               <div class="row rep-group">
                 <div><h2 class="text-center">Pie</h2></div>
                 <div class="col-xs-7 text-center">
-                  <img src="/images/representations/pie.jpg" class="rep-img" alt="Pie Representation">
+                  <img src="./images/representations/pie.jpg" class="rep-img" alt="Pie Representation">
                 </div>
                 <div class="col-xs-5">
                   <ul>
@@ -256,7 +257,7 @@
               <div class="row rep-group">
                 <div><h2 class="text-center">Bar</h2></div>
                 <div class="col-xs-7 text-center">
-                  <img src="/images/representations/bar.jpg" class="rep-img" alt="Bar Representation">
+                  <img src="./images/representations/bar.jpg" class="rep-img" alt="Bar Representation">
                 </div>
                 <div class="col-xs-5">
                   <ul>
@@ -296,7 +297,7 @@
         </div>
         <!-- <img class="gfyitem" data-id="TenderFearfulGlobefish" data-perimeter=true/> -->
         <video class="" width="100%" controls loop>
-          <source src="images/animations/allPlayingTrimmed.mp4" type="video/mp4">
+          <source src="./images/animations/allPlayingTrimmed.mp4" type="video/mp4">
           Your browser does not support the video tag.
         </video>
       </div>
@@ -307,7 +308,11 @@
     <div class="col-xs-12">
       <div class="card">
         <h3 class="text-center">Transitions</h3>
-        <!-- <img class="gfyitem" data-id="TenderFearfulGlobefish"/> -->
+        <div>Some information and HTML5 videos of the transitions.</div>
+        <div>Bead => Line | Pie | Bar</div>
+        <div>Line => Bead | Pie | Bar</div>
+        <div>Pie => Bead | Line | Bar</div>
+        <div>Bar => Bead | Line | Pie</div>
       </div>
     </div>
   </div>
@@ -359,7 +364,7 @@
         <br>
         <div>Our original proof of concept: </div>
         <div><a href="https://github.com/VT-CHCI/SoundOfFractions/tree/e9de3bc8b0ed992256cad934cc1db1e3ed76296e" target="_blank">GitHub Code</a></div>
-        <div>Deprecated Demo <a href="http://specialorange.org/sof/" target="_blank">http://specialorange.org/sof/</a></div>
+        <div>Deprecated Demo <a href="http://specialorange.org/sof-old/" target="_blank">http://specialorange.org/sof-old/</a></div>
       </div>
     </div>
 
@@ -369,17 +374,17 @@
         <h4 class="text-center"><a href="http://www.irb.vt.edu/">IRB</a> #14-831</h4>
         <div class="row">
           <div class="col-md-4">
-            <a href="../../images/irb/VT IRB-14-831 Approval Letter.pdf" target="_blank">
+            <a href="./images/irb/VT IRB-14-831 Approval Letter.pdf" target="_blank">
               <i class="fa fa-file-pdf-o fa-5x"></i>
               PDF (both pages)
             </a>
           </div>
           <div class="col-md-4 jpg">
-            <img ng-click="openLightboxModal(1)" src="../../images/irb/VT IRB-14-831 Approval Letter page 1.jpg" width="100%" alt="Page 1">
+            <img ng-click="openLightboxModal(1)" src="./images/irb/VT IRB-14-831 Approval Letter page 1.jpg" width="100%" alt="Page 1">
             <div>Page 1 JPG</div>
           </div>
           <div class="col-md-4 jpg">
-            <img ng-click="openLightboxModal(2)" src="../../images/irb/VT IRB-14-831 Approval Letter page 2.jpg" width="100%" alt="Page 2">
+            <img ng-click="openLightboxModal(2)" src="./images/irb/VT IRB-14-831 Approval Letter page 2.jpg" width="100%" alt="Page 2">
             <div>Page 2 JPG</div>
           </div>
         </div>

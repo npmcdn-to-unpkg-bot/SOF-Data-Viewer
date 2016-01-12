@@ -16,31 +16,49 @@
     <div ng-show="!error">
       <div class="col-md-1">
         <h3>Groups</h3>
-        <div ng-repeat="school in groupNames">
-          <button ng-click="toggleSchool(school.key)" ng-class="{ 'is-none': school.value == 0, active: currentSchoolFilter == school.key } ">{{school.key}}</button> 
+        gc {{groupsCounter()}}
+        gtkto {{groupsToKeepTrackOfSize}}        
+        <div ng-show="groupsCounter() !== groupsToKeepTrackOfSize" class="reset-filter" ng-click="resetAndUnfilterBy('groupName')">reset groups</div>
+        <div ng-repeat="group in groupNames">
+          <div class="btn btn-default" ng-click="toggleGroup(group); " ng-class="{ 'is-none': group.value == 0 }">{{group.key}}</div>{{group}}
         </div>
       </div>
       <div class="col-md-1">
         <h3>Days</h3>
+        <div class="reset-filter" ng-click="resetAndUnfilterBy('dayNumber')">reset days</div>
         <div ng-repeat="day in dayNumbers" ng-model="day">
-          <button ng-click="toggleDay(day)" ng-class="{ 'is-none': day.value == 0 } ">{{day.key}}</button>{{day}}
+          <div class="btn btn-default" ng-click="toggleDay(day)" ng-class="{ 'is-none': day.value == 0 }">{{day.key}}</div>
         </div>
       </div>
       <div class="col-md-4">
         <h3>Activities</h3>
-        <div ng-repeat="activity in dayAndActivityNumbers">
-          <button ng-click="toggleDay(activity.key)" ng-class="{ 'is-none': activity.value == 0 } ">{{activity.key}}</button>
+        <div class="reset-filter" ng-click="resetAndUnfilterBy('dayAndActivityNumber')">reset activities</div>
+        <div class="container-fluid">
+          <div class="row">
+            <div ng-repeat="activity in dayAndActivityNumbers" class="col-xs-3">
+              <div class="btn btn-default" ng-click="toggleDayAndActivity(activity)" ng-class="{ 'is-none': activity.value == 0 }">{{activity.key}}</div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-md-3">
         <h3>Students</h3>
-        <div ng-repeat="student in studentStudyNames">
-          <button ng-click="toggleStudent(student.key)" ng-class="{ 'is-none': student.value == 0, active: currentStudentNumberFilter == student.key } ">{{student.key}}</button>
+        <div class="reset-filter" ng-click="resetAndUnfilterBy('studentStudyNames')">reset students</div>
+        <div class="container-fluid">
+          <div class="row">
+            <div ng-repeat="student in studentStudyNames" class="col-xs-4">
+              <div class="btn btn-default" ng-click="toggleStudent(student)" ng-class="{ 'is-none': student.value == 0 }">{{student.key}}</div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="col-md-3">
         <h3>Labels</h3>
+        <div class="reset-filter" ng-click="resetAndUnfilterBy('labels')">reset labels</div>
         <div>Don't have these yet</div>
+        <div ng-repeat="label in labels">
+          <div class="btn btn-default" ng-click="toggleLabel(label)" ng-class="{ 'is-none': student.value == 0 }">{{label.key}}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -48,17 +66,19 @@
 <!-- The photos -->
 <div class="container-fluid">
   <div class="row">
-    <div ng-repeat="photo in XFilterPhotos.collection()" class="photo col-md-2">
-      <div>Photo Name : {{photo.name}}</div>
-      <div>Photo Activity Name : {{photo.activity.get('activityName')}}</div>
-      <div>Photo Day - Activity : {{photo.activityDay}} - {{photo.activityNumberThatDay}}</div>
-      <div>Photo Activity Day : {{photo.activityDay}}</div>
-      <div>Photo Activity Number That Day - {{photo.activityNumberThatDay}}</div>
-      <div>Photo Group : {{photo.groupStudyName}}</div>
-      <div>Photo Student : {{photo.studentStudyName}} - {{photo.studentStudyID}}</div>
-      <a ng-click="openLightboxModal(photo.imageIndex)">
-        <img title="Click to Enlarge this Photo" class="photo-image" ng-src="{{photo.get('file')._url}}">        
-      </a>
+    <div ng-repeat="photo in XFilterPhotos.collection()" class="col-md-2 top-buffer">
+      <div class="photo">
+        <!-- <div>Photo Name : {{photo.get('name')}}</div> -->
+        <div>Photo Activity Name : {{photo.get('activity_id').get('activityName')}}</div>
+        <div>Photo Day - Activity : {{photo.get('activity_id').get('activityDay')}} - {{photo.get('activity_id').get('activityNumberDescription')}}</div>
+        <!-- <div>Photo Activity Day : {{photo.get('activity_id').get('activityDay')}}</div> -->
+        <!-- <div>Photo Activity Number That Day - {{photo.get('activity_id').get('activityNumberDescription')}}</div> -->
+        <div>Photo Group : {{photo.get('student_id').get('school_id').get('studyName')}}</div>
+        <a ng-click="openLightboxModal(photo.imageIndex)">
+          <img title="Click to Enlarge this Photo" class="photo-image" ng-src="{{photo.get('file')._url}}">        
+        </a>
+        <div>Photo Student : {{photo.get('student_id').get('studyFirstName')}}</div>
+      </div>
     </div>
   </div>
 </div>

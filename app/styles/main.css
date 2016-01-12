@@ -5,6 +5,16 @@
   overflow-y: scroll;
 }
 */
+#guidance:hover {
+  color: darkgray;
+}
+.reset-filter{
+  color: lightgrey;
+  margin: 3px 3px 8px 3px;
+}
+.reset-filter:hover{
+  cursor: pointer;
+}
 .is-none {
   display: none;
 }
@@ -176,7 +186,7 @@ p:last-child {
   border: 1px solid black;
   border-radius: 10px;
   padding: 5px;
-  margin: 5px;
+  /*margin: 5px;*/
 }
 .photo a:hover{
   cursor: pointer;

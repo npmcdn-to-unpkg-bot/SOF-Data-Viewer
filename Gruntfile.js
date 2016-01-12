@@ -425,41 +425,35 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
-    }
-
+    },
     // Grunt environment variables
-    // env : {
-    //   options : {
-    //   //Shared Options Hash
-    //   },
-    //   dev : {
-    //     // NODE_ENV : 'development',
-    //     // DEST     : 'temp'
-    //     src : 'config.json'
-    //   },
-    //   build : {
-    //     NODE_ENV : 'production',
-    //     DEST     : 'dist',
-    //     concat   : {
-    //       PATH     : {
-    //         'value': 'node_modules/.bin',
-    //         'delimiter': ':'
-    //       }
-    //     }
-    //   },
-    //   functions: {
-    //     BY_FUNCTION: function() {
-    //       var value = '123';
-    //       grunt.log.writeln('setting BY_FUNCTION to ' + value);
-    //       return value;
-    //     }
-    //   }
-    // },
-    // myTask: {
-    //   options: {
-    //     myOpt: <%= MY_CONST %>
-    //   }
-    // }
+    env : {
+      options : {
+      //Shared Options Hash
+      },
+      dev : {
+        NODE_ENV : 'development',
+        DEST     : 'temp',
+        src : 'config.json'
+      },
+      build : {
+        NODE_ENV : 'production',
+        DEST     : 'dist',
+        concat   : {
+          PATH     : {
+            'value': 'node_modules/.bin',
+            'delimiter': ':'
+          }
+        }
+      },
+      functions: {
+        BY_FUNCTION: function() {
+          var value = '123';
+          grunt.log.writeln('setting BY_FUNCTION to ' + value);
+          return value;
+        }
+      }
+    }
   });
 
 
@@ -470,7 +464,6 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'env:dev',
-      'loadconst',
       'clean:server',
       'wiredep',
       'concurrent:server',
@@ -519,10 +512,6 @@ module.exports = function (grunt) {
     'build'
   ]);
 
-  // Grunt Environment variable
-  // grunt.loadNpmTasks('grunt-env');
-  // grunt.registerTask('loadconst', 'Load constants', function() {
-  //   grunt.config('MY_CONST', process.env.MY_CONST);
-  // });
-
+  // Trying to fix grunt build problem:
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
 };

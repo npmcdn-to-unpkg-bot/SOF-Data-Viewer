@@ -2,7 +2,7 @@
 <html ng-app="sofDataViewerApp">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Sound Of Fractions Data Viewer</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -71,15 +71,22 @@
         <div ui-view=""></div>
       </div>
 
+     <script>
+      var dateNow = new Date();
+     </script>
       <div class="footer">
         <div class="container">
           <div class="row text-center">          
-            <p><span class="glyphicon glyphicon-heart"></span> from <a href="http://specialorange.org/resume" target="_blank">Chris Frisina</a> &amp; <a href="http://thirdlab.cs.vt.edu">Third Lab</a></p>
+            <p>
+            <span class="pull-left">This site is a work in progress - {{<dateNow class="now"></dateNow> | date:'medium'}}</span>
+            <span class="glyphicon glyphicon-heart"></span> from <a href="http://specialorange.org/resume" target="_blank">Chris Frisina</a> &amp; <a href="http://thirdlab.cs.vt.edu">Third Lab</a>
+            <span class="pull-right">This site is a work in progress - {{dateNow | date:'medium'}}</span>
+            </p>
+
           </div>
         </div>
       </div>
     </div>
-
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -134,6 +141,7 @@
         <script src="scripts/controllers/dataTableController.js"></script>
         <script src="scripts/controllers/dataTableInfoController.js"></script>
         <script src="scripts/controllers/homeController.js"></script>
+        <script src="scripts/controllers/curriculumController.js"></script>
         <script src="scripts/controllers/photoController.js"></script>
         <script src="scripts/controllers/lessonPlanController.js"></script>
         <script src="scripts/directives/student-row.js"></script>

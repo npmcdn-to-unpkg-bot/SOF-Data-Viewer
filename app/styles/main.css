@@ -1,3 +1,27 @@
+.special-thanks-to {
+  margin: 0px 10px 10px 10px;
+  border-bottom: 1px solid grey;
+}
+.play-all{
+  margin: 0 auto;
+  width: 13%;
+}
+.transition-animation-label h2{
+  vertical-align: middle;
+  line-height: 150px;
+  margin-bottom: 0px;
+}
+.transition-animation-label {
+  text-align: center;;
+  height: 182px;
+  vertical-align: middle;
+  line-height: 182px;
+  margin-bottom: 20px;
+}
+.transition-animation {
+  height: 182px;
+  margin-bottom: 20px;
+}
 /*#data-table-div {
   overflow-y: scroll; 
 }

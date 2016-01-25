@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row">
-    <div ng-show="error" class="col-md-12">
-      <div>Sorry, there was a problem.  Error: </div>
+    <div ng-show="error" class="col-md-12 card">
+      <div>Sorry, there was a problem retrieving the photos.  This likely means your Internet connection was interrupted. Error:</div>
       <div>{{error}}</div>
-      <br/
+      <br/>
       <div>If this problem persists, and you think we can help, please email us at <a href='mailto:thirdlab@cs.vt.edu?subject=I was at this page: {{path}} , and I received this error: "{{error}}" .'>thirdlab@cs.vt.edu</a> .</div>
     </div>    
 <!--     <div class="col-md-3">
@@ -66,18 +66,25 @@
 <!-- The photos -->
 <div class="container-fluid">
   <div class="row">
-    <div ng-repeat="photo in XFilterPhotos.collection()" class="col-md-2 top-buffer">
-      <div class="photo">
-        <!-- <div>Photo Name : {{photo.get('name')}}</div> -->
-        <div>Photo Activity Name : {{photo.get('activity_id').get('activityName')}}</div>
-        <div>Photo Day - Activity : {{photo.get('activity_id').get('activityDay')}} - {{photo.get('activity_id').get('activityNumberDescription')}}</div>
-        <!-- <div>Photo Activity Day : {{photo.get('activity_id').get('activityDay')}}</div> -->
-        <!-- <div>Photo Activity Number That Day - {{photo.get('activity_id').get('activityNumberDescription')}}</div> -->
-        <div>Photo Group : {{photo.get('student_id').get('school_id').get('studyName')}}</div>
-        <a ng-click="openLightboxModal(photo.imageIndex)">
-          <img title="Click to Enlarge this Photo" class="photo-image" ng-src="{{photo.get('file')._url}}">        
-        </a>
-        <div>Photo Student : {{photo.get('student_id').get('studyFirstName')}}</div>
+    <div ng-hide="currentUser">
+      <!-- If NOT logged in -->
+      Please Contact us for More photos!
+    </div>
+    <div ng-show="currentUser">  
+      <!-- If Logged In -->
+      <div ng-repeat="photo in XFilterPhotos.collection()" class="col-md-2 top-buffer">
+        <div class="photo">
+          <!-- <div>Photo Name : {{photo.get('name')}}</div> -->
+          <div>Activity Name : {{photo.get('activity_id').get('activityName')}}</div>
+          <div>Day - Activity : {{photo.get('activity_id').get('activityDay')}} - {{photo.get('activity_id').get('activityNumberDescription')}}</div>
+          <!-- <div>Photo Activity Day : {{photo.get('activity_id').get('activityDay')}}</div> -->
+          <!-- <div>Photo Activity Number That Day - {{photo.get('activity_id').get('activityNumberDescription')}}</div> -->
+          <div>Group : {{photo.get('student_id').get('school_id').get('studyName')}}</div>
+          <a ng-click="openLightboxModal(photo.imageIndex)">
+            <img title="Click to Enlarge this Photo" class="photo-image" ng-src="{{photo.get('file')._url}}">        
+          </a>
+          <div>Student : {{photo.get('student_id').get('studyFirstName')}}</div>
+        </div>
       </div>
     </div>
   </div>

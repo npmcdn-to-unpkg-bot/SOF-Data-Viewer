@@ -27,5 +27,19 @@ angular.module('sofDataViewerApp')
     $scope.openLightboxModal = function (index) {
       Lightbox.openModal($scope.lightboxImageArray, index);
     };
+    $scope.videosPlaying = false;
+    $scope.toggleAllAnimations = function(){
+      if($scope.videosPlaying) {
+        $('.transition-animation').each(function(index, video){
+          video.pause();
+        });
+      } else {      
+        $('.transition-animation').each(function(index, video){
+          video.play();
+        });
+      }
+      $scope.videosPlaying = !$scope.videosPlaying;
+    };;
 
+    $scope.dateNow = new Date();
   });

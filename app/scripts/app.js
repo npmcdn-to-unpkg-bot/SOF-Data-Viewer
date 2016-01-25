@@ -33,7 +33,8 @@ var app = angular // jshint ignore:line
   .config(function ($stateProvider, $urlRouterProvider, LightboxProvider, usSpinnerConfigProvider) {
     // $rootScope.dateNow = new Date();
 
-    Parse.initialize('asdf', 'asdf');
+    // Parse.initialize('asdf', 'asdf');
+    Parse.initialize('vPRF6tb5N9wL7FarkXObvK4wMfDyQLlZYCg4AwWD', 'bd6rTUKeQXijxC0Dyy3f6PE5ZBLjYuuKGahxv4DA');
 
     // For any unmatched url, redirect to /state1
     $urlRouterProvider.otherwise('/');

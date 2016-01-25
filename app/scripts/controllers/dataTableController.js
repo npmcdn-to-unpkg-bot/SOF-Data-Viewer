@@ -23,7 +23,9 @@ angular.module('sofDataViewerApp')
       error: function(object, error) {
         $scope.$apply(function () {
           // The object was not retrieved successfully.
-          console.error('Warning, did\'t make it: ', object, error);
+          console.error('Warning, we did\'t make it: ', object, error);
+          $scope.error = object.message;
+          $scope.path = $location.path();
         });
       }
     }).then(function(results) {

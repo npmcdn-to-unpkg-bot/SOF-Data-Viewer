@@ -1,3 +1,14 @@
+.not-loaded {
+  display: none;
+}
+.masonry-brick.loaded {
+  display: block;
+}
+.masonry-brick {
+  margin: 1em;
+  width: 18%;
+}
+
 .special-thanks-to {
   margin: 0px 10px 10px 10px;
   border-bottom: 1px solid grey;

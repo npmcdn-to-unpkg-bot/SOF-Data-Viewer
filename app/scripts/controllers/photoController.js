@@ -23,9 +23,11 @@ angular.module('sofDataViewerApp')
     };
 
     query.include( ['school_id',
-                    'activity_id',
+                    'actual_activity_id',
+                    'day_number',
                     'student_id'
                    ] )
+         .limit(500)
          .ascending('date');
     query.find({
       success: function (results) {
@@ -33,7 +35,7 @@ angular.module('sofDataViewerApp')
           // Lightbox array
           $scope.lightboxImageArray = [];
           $scope.pictures = [];
-
+          console.log(results.length);
           // Making the array of photos
           results.forEach(function(picture, index){
             picture.imageIndex = index;
@@ -74,8 +76,8 @@ angular.module('sofDataViewerApp')
           $scope.daysToKeepTrackOf = {};
           // add a dimension by day
           $scope.XFilterPhotos.addDimension( 'dayNumber', function byDay(p) { 
-            $scope.daysToKeepTrackOf[p.get('activity_id').get('activityDay')] = false;
-            return p.get('activity_id').get('activityDay');
+            $scope.daysToKeepTrackOf[p.get('actual_activity_id').get('day_number')] = false;
+            return p.get('actual_activity_id').get('day_number');
           });
           $scope.dayNumbers = $scope.XFilterPhotos.groupBy('dayNumber');
 
@@ -83,8 +85,10 @@ angular.module('sofDataViewerApp')
           $scope.dayAndActivitiesToKeepTrackOf = {};
           // add a dimension by day and activityNumber
           $scope.XFilterPhotos.addDimension( 'dayAndActivityNumber', function byActivityNumber(p) {
-            $scope.dayAndActivitiesToKeepTrackOf[p.get('activity_id').get('activityDay') + ' - '+ p.get('activity_id').get('activityNumberDescription')] = false;
-            return p.get('activity_id').get('activityDay') + ' - '+ p.get('activity_id').get('activityNumberDescription');
+            // $scope.dayAndActivitiesToKeepTrackOf[p.get('actual_activity_id').get('day_number') + ' - '+ p.get('actual_activity_id').get('activity_number')] = false;
+            // return p.get('actual_activity_id').get('day_number') + ' - '+ p.get('actual_activity_id').get('activity_number');
+            $scope.dayAndActivitiesToKeepTrackOf[p.get('actual_activity_id').get('activity_shortcut')] = false;
+            return p.get('actual_activity_id').get('activity_shortcut');
           }); // jshint ignore:line
           $scope.dayAndActivityNumbers = $scope.XFilterPhotos.groupBy('dayAndActivityNumber'); // jshint ignore:line
           // UNUSED
@@ -119,8 +123,6 @@ angular.module('sofDataViewerApp')
           $scope.$on('crossfilter/updated', function(event, collection, identifier) {
           });
 
-          //****** SPINNER ******//
-          $scope.loading = false;
         });
       },
       error: function(object, error) {
@@ -132,6 +134,13 @@ angular.module('sofDataViewerApp')
         });
       }
     });
+    
+    $scope.removeSpinnerAndAddLoadedClass = function(){
+      console.log('gh');
+      //****** SPINNER ******//
+      $scope.loading = false;      
+    };
+
     $scope.openLightboxModal = function (index) {
       Lightbox.openModal($scope.lightboxImageArray, index);
     };
@@ -193,7 +202,7 @@ angular.module('sofDataViewerApp')
     };
     // FILTER RESETS
     $scope.resetAndUnfilterBy = function(thisDimension){
-      console.log(thisDimension);
+      console.log('reseting this dimension: '+thisDimension);
       $scope.XFilterPhotos.unfilterBy(thisDimension);
     };
   });

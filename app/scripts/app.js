@@ -23,7 +23,8 @@ var app = angular // jshint ignore:line
     'angular-loading-bar',
     'bootstrapLightbox',
     'angularSpinner',
-    'ngCrossfilter'
+    'ngCrossfilter',
+    'wu.masonry'
     // 'usSpinnerConfigProvider'
     // 'parse-angular',
     // 'parse-angular.enhance'

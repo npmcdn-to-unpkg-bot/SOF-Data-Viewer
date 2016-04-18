@@ -88,7 +88,7 @@ angular.module('sofDataViewerApp')
             // $scope.dayAndActivitiesToKeepTrackOf[p.get('actual_activity_id').get('day_number') + ' - '+ p.get('actual_activity_id').get('activity_number')] = false;
             // return p.get('actual_activity_id').get('day_number') + ' - '+ p.get('actual_activity_id').get('activity_number');
             $scope.dayAndActivitiesToKeepTrackOf[p.get('actual_activity_id').get('activity_shortcut')] = false;
-            return p.get('actual_activity_id').get('activity_shortcut');
+            return p.get('actual_activity_id').get('activity_shortcut') + ' : ' + p.get('actual_activity_id').get('activity_name');
           }); // jshint ignore:line
           $scope.dayAndActivityNumbers = $scope.XFilterPhotos.groupBy('dayAndActivityNumber'); // jshint ignore:line
           // UNUSED

@@ -14,7 +14,7 @@
     </div>
  -->
     <div ng-show="!error">
-      <div class="col-md-2">
+      <div class="col-md-1">
         <h3>Groups</h3>
         <div ng-show="groupsCounter() !== groupsToKeepTrackOfSize" class="reset-filter" ng-click="resetAndUnfilterBy('groupName')">reset groups</div>
         <div class="container-fluid">
@@ -22,42 +22,42 @@
             <!-- gc {{groupsCounter()}} -->
             <!-- gtkto {{groupsToKeepTrackOfSize}}         -->
             <div ng-repeat="group in groupNames">
-              <div class="btn btn-default col-md-6" ng-click="toggleGroup(group); " ng-class="{ 'is-none': group.value == 0 }">{{group.key}}</div>
+              <div class="btn btn-default col-md-12" ng-click="toggleGroup(group); " ng-class="{ 'is-none': group.value == 0 }">{{group.key}}</div>
               <!-- {{group}} -->
             </div>
 
           </div>
         </div>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-1">
         <h3>Days</h3>
         <div class="reset-filter" ng-click="resetAndUnfilterBy('dayNumber')">reset days</div>
         <div class="container-fluid">
           <div class="row">
             <div ng-repeat="day in dayNumbers" ng-model="day">
-              <div class="btn btn-default col-md-4" ng-click="toggleDay(day)" ng-class="{ 'is-none': day.value == 0 }">{{day.key}}</div>
+              <div class="btn btn-default col-md-6" ng-click="toggleDay(day)" ng-class="{ 'is-none': day.value == 0 }">{{day.key}}</div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-8">
         <h3>Activities</h3>
         <div class="reset-filter" ng-click="resetAndUnfilterBy('dayAndActivityNumber')">reset activities</div>
         <div class="container-fluid">
           <div class="row">
             <div ng-repeat="activity in dayAndActivityNumbers">
-              <div class="btn btn-default col-md-2" ng-click="toggleDayAndActivity(activity)" ng-class="{ 'is-none': activity.value == 0 }">{{activity.key}}</div>
+              <div class="btn btn-default col-md-2 sub-activity-btn" ng-click="toggleDayAndActivity(activity)" ng-class="{ 'is-none': activity.value == 0 }">{{activity.key}}</div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         <h3>Students</h3>
         <div class="reset-filter" ng-click="resetAndUnfilterBy('studentStudyNames')">reset students</div>
         <div class="container-fluid">
           <div class="row">
             <div ng-repeat="student in studentStudyNames">
-              <div class="btn btn-default col-md-3" ng-click="toggleStudent(student)" ng-class="{ 'is-none': student.value == 0 }">{{student.key}}</div>
+              <div class="btn btn-default col-md-4 student-name" ng-click="toggleStudent(student)" ng-class="{ 'is-none': student.value == 0 }">{{student.key}}</div>
             </div>
           </div>
         </div>

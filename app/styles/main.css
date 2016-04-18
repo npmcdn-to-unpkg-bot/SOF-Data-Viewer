@@ -1,3 +1,12 @@
+.student-name{
+  padding: 3px;
+}
+.sub-activity-btn{
+  height: 50px;
+  white-space: normal;
+  font-size: 12px;
+  padding: 0px;
+}
 .not-loaded {
   display: none;
 }

@@ -13,12 +13,22 @@ angular.module('sofDataViewerApp')
     $scope.quantity = 1;
 
     $scope.groups = [];
+    $scope.students = [];
+    $scope.allLogs = [];
     var schools = Parse.Object.extend('School');
     var query = new Parse.Query(schools);
     query.ascending('studyName');
     // query.include('Student');
     query.find({
-      success: function(results) {
+      success: function(schoolResults) {
+        $scope.$apply(function () {
+          schoolResults.forEach(function(school, index){
+            // add each group to the groups array
+            $scope.groups.push(school);
+            // and give it an array for its students
+            $scope.groups[index].students=[];
+          });
+        });
       },
       error: function(object, error) {
         $scope.$apply(function () {
@@ -28,22 +38,22 @@ angular.module('sofDataViewerApp')
           $scope.path = $location.path();
         });
       }
-    }).then(function(results) {
+    }).then(function(schoolResults) {
       var parseStudents = Parse.Object.extend('Student');
       var qry = new Parse.Query(parseStudents);
       qry.include('School');
       qry.find({
         success: function(students) {
-          // debugger;
           $scope.$apply(function () {
-            results.forEach(function(result, index){
-              $scope.groups.push(result);
-              $scope.groups[index].students=[];
-            });
             students.forEach(function(student, sIndex){
+              $scope.students.push(student);
               $scope.groups.forEach(function(group, gIndex){
+                // When the student belongs to one of the groups already known
                 if($scope.groups[gIndex].attributes.studyName === students[sIndex].get('school_id').get('studyName')){
+                  // Add the student to the group
                   $scope.groups[gIndex].students.push(students[sIndex]);
+                  // and give each student a studentLogs array
+                  $scope.groups[gIndex].students[$scope.groups[gIndex].students.length-1].studentLogs=[0,0,0,0,0,0,0];
                 }
               });
             });
@@ -53,9 +63,42 @@ angular.module('sofDataViewerApp')
           // The object was not retrieved successfully.
           console.error('Warning, did\'t make it: ', object, error);
         }
-      });
-     // console.log("Updated " + result.id);
-   });
+      }).then(function(studentResults) {
+          var parseLogs = Parse.Object.extend('Logs');
+          var qry = new Parse.Query(parseLogs);
+          qry.include('Student');
+          qry.find({
+            success: function(logs) {
+              $scope.$apply(function () {
+                $scope.groups.forEach(function(group, gIndex){
+                  group.students.forEach(function(student, sIndex){
+                    logs.forEach(function(log, lIndex){
+                      $scope.allLogs.push(log);
+                      // When a log matches a student, in a particular group
+                      if(
+                        // match by name
+                        $scope.groups[gIndex].students[sIndex].get('studyFirstName') === log.get('student_id').get('studyFirstName')
+                        )
+                      {
+                        // Add the logs to the log array of that student, in that group
+                        $scope.groups[gIndex].students[sIndex].studentLogs.splice(log.get('day_number')-1, 1, log);
+                      } else {
+                        // do nothing, cause array already has a 0 in its place
+                      }
+                    });
+                  });
+                });
+              });
+            },
+            error: function(object, error) {
+              // The object was not retrieved successfully.
+              console.error('Warning, did\'t make it: ', object, error);
+            }
+          })
+         // console.log("Updated " + result.id);
+        })
+    })
+  });
 
 
     // function asyncGreet(name) {
@@ -81,4 +124,3 @@ angular.module('sofDataViewerApp')
     // var groupsRef = new Firebase('https://sof-data.firebaseio.com/studyGroups');
     // $scope.groups = $firebaseArray(groupsRef);
 
-  });

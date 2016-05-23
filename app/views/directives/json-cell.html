@@ -1,0 +1,17 @@
+<div ng-show=studentLog>
+  <a ui-sref="data-table.info({ studentStudyName:student.get('studyFirstName'),
+                                day:day,
+                                schoolName:student.get('school_id').get('studyName'),
+                                grade:student.get('grade'),
+                                gender:student.get('gender'),
+                                jsonData:studentLog
+                                })">JSON</a>
+</div>
+<div ng-hide=studentLog>
+  <div ng-if="day==1">
+    SoF not used
+  </div>
+  <div ng-if="day!=1">
+    No Data
+  </div>
+</div>

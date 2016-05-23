@@ -6,186 +6,8 @@
     <div>If this problem persists, and you think we can help, please email us at <a href='mailto:thirdlab@cs.vt.edu?subject=I was at this page: {{path}} , and I received this error: "{{error}}" .'>thirdlab@cs.vt.edu</a> .</div>
   </div>    
   <div ng-show="!error">
-    <div ng-hide="currentUser">
-      <div id="data-table-div" class="col-md-6">
-        <div ng-repeat="studyGroup in groups | limitTo:quantity" class="data-table top-buffer">
-          <div class="row-fluid">
-            <table id="data-table-{{studyGroup.studyID}}" st-table="rowCollection" class="table table-striped">
-              <thead>
-                <tr>
-                  <th colspan="3">{{studyGroup.attributes.studyName}}</th>
-                  <!-- <th>First name</th> -->
-                  <!-- <th>Last name</th> -->
-                  <th colspan="4">Day 1</th>
-                  <th colspan="4">Day 2</th>
-                  <th colspan="4">Day 3</th>
-                  <th colspan="4">Day 4</th>
-                  <th colspan="4">Day 5</th>
-                  <th colspan="4">Day 6</th>
-                  <th colspan="4">Day 7</th>
-                </tr>
-                <tr>
-                  <th rowspan="1">Name</th>
-                  <th rowspan="1">Grade</th>
-                  <th rowspan="1">Gender</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>D</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>D</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>D</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>D</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>D</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>D</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>D</th>
-                </tr>
-              </thead>
-              <!-- Per Angular / HTML(adoption agency algorithm) problem:
-                      - http://stackoverflow.com/questions/19233372/template-must-have-exactly-one-root-element-with-custom-directive-replace-true 
-                      - https://github.com/angular/angular.js/issues/1459#issuecomment-150607446
-               -->
-              <tbody student-row ng-repeat="student in studyGroup.students | limitTo:quantity" ng-model="student">
-              </tbody>
-              <tr style="background-color:white">
-                <td class="">…</td>
-                <td class="">…</td>
-                <td class="">…</td>
-                <td class=""></td>
-                <td class=""></td>
-                <td class=""></td>
-                <td class=""></td>
-                <td class=""></td>
-                <td class=""></td>
-                <td class=""></td>
-                <td class=""></td>
-                <td class=""></td>
-                <td class=""></td>
-                <td class=""></td>
-                <td class=""></td>
-                <td class=""></td>
-                <td class=""></td>
-                <td class=""></td>
-                <td class=""></td>
-                <td class="">…</td>
-              </tr>              
-            </table>
-            <table st-table="rowCollection" class="table table-striped">
-              <thead>
-                <tr>
-                  <th colspan="3">Additional Groups....</th>
-                  <!-- <th>First name</th> -->
-                  <!-- <th>Last name</th> -->
-                  <th colspan="4">Day 1</th>
-                  <th colspan="4">Day 2</th>
-                  <th colspan="4">Day 3</th>
-                  <th colspan="4">…</th>
-                </tr>
-                <tr>
-                  <th rowspan="1">Name</th>
-                  <th rowspan="1">Grade</th>
-                  <th rowspan="1">Gender</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>D</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>D</th>
-                  <th>E</th>
-                  <th>…</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="student-day-row">
-                  <!-- <td class="student-day-data">{{student.get('studyId')}}</td> -->
-                  <td class="student-day-data">Hopper</td>
-                  <td class="student-day-data">∞</td>
-                  <td class="student-day-data"><i class="fa fa-venus"></i></td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                </tr>              
-                <tr class="student-day-row">
-                  <!-- <td class="student-day-data">{{student.get('studyId')}}</td> -->
-                  <td class="student-day-data">Turing</td>
-                  <td class="student-day-data">∞</td>
-                  <td class="student-day-data"><i class="fa fa-mars"></i></td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                  <td class="student-day-data">…</td>
-                </tr>
-                <tr class="student-day-row">
-                  <!-- <td class="student-day-data">{{student.get('studyId')}}</td> -->
-                  <td class="student-day-data">… … …</td>
-                  <td class="student-day-data"></td>
-                  <td class="student-day-data"></td>
-                  <td class="student-day-data"></td>
-                  <td class="student-day-data"></td>
-                  <td class="student-day-data"></td>
-                  <td class="student-day-data"></td>
-                  <td class="student-day-data"></td>
-                  <td class="student-day-data"></td>
-                  <td class="student-day-data"></td>
-                  <td class="student-day-data"></td>
-                  <td class="student-day-data"></td>
-                  <td class="student-day-data"></td>
-                  <td class="student-day-data"></td>
-                  <td class="student-day-data"></td>
-                  <td class="student-day-data"></td>
-                </tr>              
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div>
-          <div><h1>Interested in more data?</h1></div>
-          <div>Please contact the Third Lab at <a href="mailto:thirdlab@cs.vt.edu">thirdlab@cs.vt.edu</a> and we will be happy to discuss our project!</div>
-        </div>
-      </div>
-    </div>
-    <div ng-show="currentUser">  
+    <!-- For when considering logged in users -->
+    <!-- <div ng-show="currentUser">   -->
       <div id="data-table-div" class="col-md-6">
         <div ng-repeat="studyGroup in groups" class="data-table top-buffer">
           <div class="row-fluid">
@@ -195,46 +17,19 @@
                   <th colspan="3">{{studyGroup.attributes.studyName}}</th>
                   <!-- <th>First name</th> -->
                   <!-- <th>Last name</th> -->
-                  <th colspan="4">Day 1</th>
-                  <th colspan="4">Day 2</th>
-                  <th colspan="4">Day 3</th>
-                  <th colspan="4">Day 4</th>
-                  <th colspan="4">Day 5</th>
-                  <th colspan="4">Day 6</th>
-                  <th colspan="4">Day 7</th>
+                  <th colspan="1">Day 1</th>
+                  <th colspan="1">Day 2</th>
+                  <th colspan="1">Day 3</th>
+                  <th colspan="1">Day 4</th>
+                  <th colspan="1">Day 5</th>
+                  <th colspan="1">Day 6</th>
+                  <th ng-if="studyGroup.attributes.studyName === 'Group 1'" colspan="1">Day 7</th>
                 </tr>
                 <tr>
                   <th rowspan="1">Name</th>
                   <th rowspan="1">Grade</th>
                   <th rowspan="1">Gender</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>D</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>D</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>D</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>D</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>D</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>D</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>C</th>
-                  <th>D</th>
+                  <th class="text-muted" colspan="7">Logs if they have data, or 'Absent'</th>
                 </tr>
               </thead>
               <!-- Per Angular / HTML(adoption agency algorithm) problem:
@@ -246,7 +41,7 @@
           </div>
         </div>
       </div>
-    </div>  
+    <!-- </div>   -->
   </div> <!-- End the data error div -->
 
   <div id="data-table-info-div" class="col-md-6">

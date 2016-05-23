@@ -77,12 +77,12 @@
 <!-- The photos -->
 <div class="container-fluid">
   <div class="row">
-    <div ng-hide="currentUser">
-      <!-- If NOT logged in -->
+    <!-- If NOT logged in -->
+<!--     <div ng-hide="currentUser">
       Please Contact us for More photos!
     </div>
     <div ng-show="currentUser">  
-      <!-- If Logged In -->
+ -->      <!-- If Logged In -->
       <div masonry>
         <div ng-repeat="photo in XFilterPhotos.collection()" class="masonry-brick not-loaded">
           <div class="photo">
@@ -96,6 +96,6 @@
           </div>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 </div>

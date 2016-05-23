@@ -55,7 +55,11 @@ var app = angular // jshint ignore:line
       .state('data-table.info', {
         url: '/info/?studentStudyName?day?activity?schoolName?grade?gender',
         templateUrl: 'views/partials/dataPage.rightInfo.html',
-        controller: 'dataTableInfoController'
+        controller: 'dataTableInfoController',
+        params: { hiddenOne: null,
+                  jsonData: { array: true },
+                  jD: null
+                }
       })
       .state('data-table.info.list', {
         url: '/list',

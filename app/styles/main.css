@@ -1,3 +1,7 @@
+.json-table-data{
+  max-height: 700px;
+  overflow-y: auto;
+}
 .student-name{
   padding: 3px;
 }

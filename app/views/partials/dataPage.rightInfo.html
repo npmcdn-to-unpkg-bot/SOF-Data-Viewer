@@ -9,16 +9,21 @@
       </div>
       <div class="col-md-3">
         <img ng-src="http://api.adorable.io/avatars/{{studyName}}" alt="{{studyName}}'s Avatar" class="avatar">
+        <div class="text-center">{{studyName}}</div>
       </div>
     </div>
     <div class="row">
-      All Pictures associated with {{studyName}} for Activity {{activity}} on Day {{day}}
-      <div ng-repeat="picture in studentActivityPictures">
-        <div class="col-md-2">
-          <img ng-src="photo.get('file')._url" class="photo-image" alt="photo.get('name')">
-        </div>
+      Interaction data associated with {{studyName}} for Day {{day}}
+      <div class="col-md-12 json-table-data">
+        <table>
+          <tr>
+            <th>Each line is one Interaction</th>
+          </tr>
+          <tr>
+            <td ng-bind-html="params.jsonData[0].get('log_data') | nl2br"></td>
+          </tr>
+        </table>
       </div>
-      <div>TODO</div>
     </div>
   </div>
 </div>
